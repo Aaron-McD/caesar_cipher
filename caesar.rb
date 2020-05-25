@@ -1,9 +1,10 @@
 def caesar_cipher(string_in, shift)
-    while(shift > 26)
-        shift -= 26
-    end
-    while(shift < 0)
-        shift += 26
+    if(shift > 0)
+        shift %= 26
+    else
+        while(shift < 0)
+            shift += 26
+        end
     end
     string_array = string_in.split('')
     string_out = string_array.map do |c|
@@ -28,3 +29,6 @@ def caesar_cipher(string_in, shift)
     end
     return string_out.join('')
 end
+
+puts caesar_cipher('What a string!', 5)
+puts caesar_cipher('What a string!', -21)
